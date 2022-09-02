@@ -1,0 +1,12 @@
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.csproj.GenerateResource.cache
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\bin\Debug\Ex05.WindowsAppUI.exe
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\bin\Debug\Ex05.WindowsAppUI.pdb
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.exe
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.pdb
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\bin\Debug\Ex05.Logic.dll
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\bin\Debug\Ex05.Logic.pdb
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.csproj.CopyComplete
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.Properties.Resources.resources
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.WindowsAppUI\obj\Debug\Ex05.WindowsAppUI.SettingsForm.resources
