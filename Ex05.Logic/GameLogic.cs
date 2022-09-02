@@ -4,8 +4,6 @@ namespace Ex05.Logic
 {
     public class GameLogic
     {
-        public event Action<Card> Clicked;
-
         public event Action PairFound;
 
         private readonly int r_BoardCols;

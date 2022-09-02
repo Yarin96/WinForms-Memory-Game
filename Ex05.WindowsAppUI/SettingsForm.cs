@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Ex05.Logic;
 
@@ -12,18 +7,14 @@ namespace Ex05.WindowsAppUI
 {
     public partial class SettingsForm : Form
     {
-        public event Action<Player, Player, int, int, Card[,]> StartGame;
+        public event Action<Player, Player, int, int, eGameMode> StartedGame;
 
         private int m_BoardRows;
         private int m_BoardCols;
         private int m_BoardSizeIterator;
         private List<string> m_BoardSizeOptions;
-        private Player m_PlayerOne;
-        private Player m_PlayerTwo;
         private ePlayerType m_PlayerType;
         private eGameMode m_GameMode;
-        private Card[,] m_CardBoard;
-        private GameLogic m_GameLogic;
 
         public SettingsForm()
         {
@@ -31,11 +22,11 @@ namespace Ex05.WindowsAppUI
             m_BoardRows = 4;
             m_BoardCols = 4;
             m_BoardSizeIterator = 0;
-            m_BoardSizeOptions = new List<string> { "4 x 4", "4 x 5", "4 x 6", "5 x 4", "5 x 6", "6 x 4", "6 x 5", "6 x 6", "4 x 4", "4 x 5" };
-            FormClosed += SettingsForm_FormClosed;
+            m_BoardSizeOptions = new List<string> { "4 x 4", "4 x 5", "4 x 6", "5 x 4", "5 x 6", "6 x 4", "6 x 5", "6 x 6" };
+            FormClosed += settingsForm_FormClosed;
         }
 
-        private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void settingsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -76,7 +67,7 @@ namespace Ex05.WindowsAppUI
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (UserInfoValidations.CheckIfValidName(sender.ToString()))
+            if (!checkIfValidName(firstPlayerTextBox.Text) || !checkIfValidName(secondPlayerTextBox.Text))
             {
                 MessageBox.Show("Names should not contain symbols or numbers.");
             }
@@ -92,16 +83,38 @@ namespace Ex05.WindowsAppUI
                     {
                         MessageBox.Show("Please enter the second player name.");
                     }
+                    else
+                    {
+                        OnStartGame();
+                    }
                 }
-
-                StartGame?.Invoke(
-                    new Player(ePlayerType.Human, firstPlayerTextBox.Text),
-                    new Player(m_PlayerType, secondPlayerTextBox.Text),
-                    m_BoardRows,
-                    m_BoardCols,
-                    new Card[m_BoardRows, m_BoardCols]);
-                FormClosed -= SettingsForm_FormClosed;
             }
+        }
+
+        protected virtual void OnStartGame()
+        {
+            StartedGame?.Invoke(new Player(ePlayerType.Human, firstPlayerTextBox.Text), new Player(m_PlayerType, secondPlayerTextBox.Text), m_BoardRows, m_BoardCols, m_GameMode);
+            FormClosed -= settingsForm_FormClosed;
+            Close();
+        }
+
+        private bool checkIfValidName(string i_PlayerName)
+        {
+            bool isValidFlag = true;
+
+            if (i_PlayerName != string.Empty)
+            {
+                for (int i = 0; i < i_PlayerName.Length; i++)
+                {
+                    if (!char.IsLetter(i_PlayerName[i]))
+                    {
+                        isValidFlag = false;
+                        break;
+                    }
+                }
+            }
+
+            return isValidFlag;
         }
     }
 }

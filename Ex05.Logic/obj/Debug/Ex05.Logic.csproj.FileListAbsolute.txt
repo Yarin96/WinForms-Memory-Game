@@ -3,3 +3,4 @@ C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 
 C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.Logic\bin\Debug\Ex05.Logic.pdb
 C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.Logic\obj\Debug\Ex05.Logic.dll
 C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.Logic\obj\Debug\Ex05.Logic.pdb
+C:\Users\USER\source\repos\C22 Ex05 YarinBar 207128091 BenDaniels 316582295\C22 Ex05 Yarin 207128091 Ben 316582295\Ex05.Logic\obj\Debug\Ex05.Logic.csproj.AssemblyReference.cache
