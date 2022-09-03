@@ -12,7 +12,7 @@ namespace Ex05.Logic
         private bool m_CardValuesMatch;
         private Card m_CurrentCardSelection;
         private Card m_PreviousCardSelection;
-        private Card[,] m_Board;
+        private Card[,] m_GameBoard;
         private Player m_Player1;
         private Player m_Player2;
         private Player m_CurrentPlayer;
@@ -25,7 +25,7 @@ namespace Ex05.Logic
             r_BoardRows = i_BoardRows;
             r_BoardCols = i_BoardCols;
             m_IsFirstCardSelection = true;
-            m_Board = i_Board;
+            m_GameBoard = i_Board;
         }
 
         public Player CurrentPlayer
@@ -52,6 +52,7 @@ namespace Ex05.Logic
         public Card PreviousCard
         {
             get { return m_PreviousCardSelection; }
+            set { m_PreviousCardSelection = value; }
         }
 
         public Card CurrentCard
@@ -63,6 +64,7 @@ namespace Ex05.Logic
         {
             if (m_IsFirstCardSelection)
             {
+                m_CurrentCardSelection = null;
                 m_PreviousCardSelection = i_UserCardSelection;
                 m_PreviousCardSelection.IsHidden = false;
                 m_IsFirstCardSelection = false;
@@ -88,11 +90,11 @@ namespace Ex05.Logic
         public void ComputerTurn()
         {
             Random random = new Random();
-            Card currentComputerChoice = m_Board[random.Next(r_BoardRows), random.Next(r_BoardCols)];
+            Card currentComputerChoice = m_GameBoard[random.Next(r_BoardRows), random.Next(r_BoardCols)];
 
             while (!currentComputerChoice.IsHidden)
             {
-                currentComputerChoice = m_Board[random.Next(r_BoardRows), random.Next(r_BoardCols)];
+                currentComputerChoice = m_GameBoard[random.Next(r_BoardRows), random.Next(r_BoardCols)];
             }
 
             UpdateNextTurn(currentComputerChoice);
@@ -102,7 +104,7 @@ namespace Ex05.Logic
         //{
         //    int colLetter = ConvertLetterToInt(i_UserCardInput[0]);
         //    int rowNum = ConvertNumberCharacterToInt(i_UserCardInput[1]);
-        //    return !m_Board[colLetter - 1, rowNum - 1].IsHidden;
+        //    return !m_GameBoard[colLetter - 1, rowNum - 1].IsHidden;
         //}
     }
 }

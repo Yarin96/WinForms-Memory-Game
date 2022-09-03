@@ -30,8 +30,8 @@ namespace Ex05.WindowsAppUI
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                firstPlayerTextBox.Text = firstPlayerTextBox.Text == string.Empty ? "Player One" : firstPlayerTextBox.Text;
-                secondPlayerTextBox.Text = secondPlayerTextBox.Text == string.Empty ? "Player Two" : secondPlayerTextBox.Text;
+                m_FirstPlayerTextBox.Text = m_FirstPlayerTextBox.Text == string.Empty ? "Player One" : m_FirstPlayerTextBox.Text;
+                m_SecondPlayerTextBox.Text = m_SecondPlayerTextBox.Text == string.Empty ? "Player Two" : m_SecondPlayerTextBox.Text;
             }
 
             startButton_Click(sender, e);
@@ -39,19 +39,19 @@ namespace Ex05.WindowsAppUI
 
         private void gameModeButton_Click(object sender, EventArgs e)
         {
-            if (gameModeButton.Text == "Against Computer")
+            if (m_GameModeButton.Text == "Against Computer")
             {
-                secondPlayerTextBox.Enabled = false;
-                secondPlayerTextBox.Text = "- Computer -";
-                gameModeButton.Text = "Against a Friend";
+                m_SecondPlayerTextBox.Enabled = false;
+                m_SecondPlayerTextBox.Text = "- Computer -";
+                m_GameModeButton.Text = "Against a Friend";
                 m_PlayerType = ePlayerType.Computer;
                 m_GameMode = eGameMode.PlayerVsComputer;
             }
             else
             {
-                secondPlayerTextBox.Enabled = true;
-                secondPlayerTextBox.Text = string.Empty;
-                gameModeButton.Text = "Against Computer";
+                m_SecondPlayerTextBox.Enabled = true;
+                m_SecondPlayerTextBox.Text = string.Empty;
+                m_GameModeButton.Text = "Against Computer";
                 m_PlayerType = ePlayerType.Human;
                 m_GameMode = eGameMode.PlayerVsPlayer;
             }
@@ -60,26 +60,26 @@ namespace Ex05.WindowsAppUI
         private void boardSizeButton_Click(object sender, EventArgs e)
         {
             m_BoardSizeIterator = m_BoardSizeIterator < m_BoardSizeOptions.Count - 1 ? m_BoardSizeIterator + 1 : 0;
-            boardSizeButton.Text = m_BoardSizeOptions[m_BoardSizeIterator];
-            m_BoardRows = int.Parse(boardSizeButton.Text[0].ToString());
-            m_BoardCols = int.Parse(boardSizeButton.Text[boardSizeButton.Text.Length - 1].ToString());
+            m_BoardSizeButton.Text = m_BoardSizeOptions[m_BoardSizeIterator];
+            m_BoardRows = int.Parse(m_BoardSizeButton.Text[0].ToString());
+            m_BoardCols = int.Parse(m_BoardSizeButton.Text[m_BoardSizeButton.Text.Length - 1].ToString());
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (!checkIfValidName(firstPlayerTextBox.Text) || !checkIfValidName(secondPlayerTextBox.Text))
+            if (!checkIfValidName(m_FirstPlayerTextBox.Text) || !checkIfValidName(m_SecondPlayerTextBox.Text))
             {
                 MessageBox.Show("Names should not contain symbols or numbers.");
             }
             else
             {
-                if (firstPlayerTextBox.Text == string.Empty)
+                if (m_FirstPlayerTextBox.Text == string.Empty)
                 {
                     MessageBox.Show("Please enter the first player name.");
                 }
                 else
                 {
-                    if (secondPlayerTextBox.Text == string.Empty)
+                    if (m_SecondPlayerTextBox.Text == string.Empty)
                     {
                         MessageBox.Show("Please enter the second player name.");
                     }
@@ -93,9 +93,17 @@ namespace Ex05.WindowsAppUI
 
         protected virtual void OnStartGame()
         {
-            StartedGame?.Invoke(new Player(ePlayerType.Human, firstPlayerTextBox.Text), new Player(m_PlayerType, secondPlayerTextBox.Text), m_BoardRows, m_BoardCols, m_GameMode);
-            FormClosed -= settingsForm_FormClosed;
-            Close();
+            if (StartedGame != null)
+            {
+                StartedGame.Invoke(
+                    new Player(ePlayerType.Human, m_FirstPlayerTextBox.Text),
+                    new Player(m_PlayerType, m_SecondPlayerTextBox.Text),
+                    m_BoardRows,
+                    m_BoardCols,
+                    m_GameMode);
+                FormClosed -= settingsForm_FormClosed;
+                Close();
+            }
         }
 
         private bool checkIfValidName(string i_PlayerName)

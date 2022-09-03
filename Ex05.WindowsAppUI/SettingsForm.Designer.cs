@@ -29,105 +29,105 @@ namespace Ex05.WindowsAppUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.firstPlayerTextBox = new System.Windows.Forms.TextBox();
-            this.secondPlayerTextBox = new System.Windows.Forms.TextBox();
-            this.gameModeButton = new System.Windows.Forms.Button();
-            this.boardSizeButton = new System.Windows.Forms.Button();
-            this.startButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.m_FirstPlayerNameLabel = new System.Windows.Forms.Label();
+            this.m_SecondPlayerNameLabel = new System.Windows.Forms.Label();
+            this.m_FirstPlayerTextBox = new System.Windows.Forms.TextBox();
+            this.m_SecondPlayerTextBox = new System.Windows.Forms.TextBox();
+            this.m_GameModeButton = new System.Windows.Forms.Button();
+            this.m_BoardSizeButton = new System.Windows.Forms.Button();
+            this.m_StartButton = new System.Windows.Forms.Button();
+            this.m_BoardSizeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // m_FirstPlayerNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "First Player Name:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_FirstPlayerNameLabel.AutoSize = true;
+            this.m_FirstPlayerNameLabel.Location = new System.Drawing.Point(12, 21);
+            this.m_FirstPlayerNameLabel.Name = "m_FirstPlayerNameLabel";
+            this.m_FirstPlayerNameLabel.Size = new System.Drawing.Size(92, 13);
+            this.m_FirstPlayerNameLabel.TabIndex = 0;
+            this.m_FirstPlayerNameLabel.Text = "First Player Name:";
+            this.m_FirstPlayerNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // m_SecondPlayerNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Second Player Name:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_SecondPlayerNameLabel.AutoSize = true;
+            this.m_SecondPlayerNameLabel.Location = new System.Drawing.Point(12, 57);
+            this.m_SecondPlayerNameLabel.Name = "m_SecondPlayerNameLabel";
+            this.m_SecondPlayerNameLabel.Size = new System.Drawing.Size(110, 13);
+            this.m_SecondPlayerNameLabel.TabIndex = 1;
+            this.m_SecondPlayerNameLabel.Text = "Second Player Name:";
+            this.m_SecondPlayerNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // firstPlayerTextBox
+            // m_FirstPlayerTextBox
             // 
-            this.firstPlayerTextBox.Location = new System.Drawing.Point(131, 18);
-            this.firstPlayerTextBox.Name = "firstPlayerTextBox";
-            this.firstPlayerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.firstPlayerTextBox.TabIndex = 0;
+            this.m_FirstPlayerTextBox.Location = new System.Drawing.Point(131, 18);
+            this.m_FirstPlayerTextBox.Name = "m_FirstPlayerTextBox";
+            this.m_FirstPlayerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.m_FirstPlayerTextBox.TabIndex = 0;
             // 
-            // secondPlayerTextBox
+            // m_SecondPlayerTextBox
             // 
-            this.secondPlayerTextBox.Location = new System.Drawing.Point(131, 54);
-            this.secondPlayerTextBox.Name = "secondPlayerTextBox";
-            this.secondPlayerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.secondPlayerTextBox.TabIndex = 1;
+            this.m_SecondPlayerTextBox.Location = new System.Drawing.Point(131, 54);
+            this.m_SecondPlayerTextBox.Name = "m_SecondPlayerTextBox";
+            this.m_SecondPlayerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.m_SecondPlayerTextBox.TabIndex = 1;
             // 
-            // gameModeButton
+            // m_GameModeButton
             // 
-            this.gameModeButton.AutoSize = true;
-            this.gameModeButton.Location = new System.Drawing.Point(249, 52);
-            this.gameModeButton.Name = "gameModeButton";
-            this.gameModeButton.Size = new System.Drawing.Size(101, 23);
-            this.gameModeButton.TabIndex = 2;
-            this.gameModeButton.Text = "Against Computer";
-            this.gameModeButton.UseVisualStyleBackColor = true;
-            this.gameModeButton.Click += new System.EventHandler(this.gameModeButton_Click);
+            this.m_GameModeButton.AutoSize = true;
+            this.m_GameModeButton.Location = new System.Drawing.Point(249, 52);
+            this.m_GameModeButton.Name = "m_GameModeButton";
+            this.m_GameModeButton.Size = new System.Drawing.Size(101, 23);
+            this.m_GameModeButton.TabIndex = 2;
+            this.m_GameModeButton.Text = "Against Computer";
+            this.m_GameModeButton.UseVisualStyleBackColor = true;
+            this.m_GameModeButton.Click += new System.EventHandler(this.gameModeButton_Click);
             // 
-            // boardSizeButton
+            // m_BoardSizeButton
             // 
-            this.boardSizeButton.BackColor = System.Drawing.Color.MediumPurple;
-            this.boardSizeButton.Location = new System.Drawing.Point(12, 116);
-            this.boardSizeButton.Name = "boardSizeButton";
-            this.boardSizeButton.Size = new System.Drawing.Size(141, 68);
-            this.boardSizeButton.TabIndex = 3;
-            this.boardSizeButton.Text = "4 x 4";
-            this.boardSizeButton.UseVisualStyleBackColor = false;
-            this.boardSizeButton.Click += new System.EventHandler(this.boardSizeButton_Click);
+            this.m_BoardSizeButton.BackColor = System.Drawing.Color.MediumPurple;
+            this.m_BoardSizeButton.Location = new System.Drawing.Point(12, 116);
+            this.m_BoardSizeButton.Name = "m_BoardSizeButton";
+            this.m_BoardSizeButton.Size = new System.Drawing.Size(141, 68);
+            this.m_BoardSizeButton.TabIndex = 3;
+            this.m_BoardSizeButton.Text = "4 x 4";
+            this.m_BoardSizeButton.UseVisualStyleBackColor = false;
+            this.m_BoardSizeButton.Click += new System.EventHandler(this.boardSizeButton_Click);
             // 
-            // startButton
+            // m_StartButton
             // 
-            this.startButton.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.startButton.Location = new System.Drawing.Point(260, 154);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(84, 30);
-            this.startButton.TabIndex = 4;
-            this.startButton.Text = "Start!";
-            this.startButton.UseVisualStyleBackColor = false;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            this.m_StartButton.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.m_StartButton.Location = new System.Drawing.Point(260, 154);
+            this.m_StartButton.Name = "m_StartButton";
+            this.m_StartButton.Size = new System.Drawing.Size(84, 30);
+            this.m_StartButton.TabIndex = 4;
+            this.m_StartButton.Text = "Start!";
+            this.m_StartButton.UseVisualStyleBackColor = false;
+            this.m_StartButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // label3
+            // m_BoardSizeLabel
             // 
-            this.label3.Location = new System.Drawing.Point(12, 89);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 24);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Board Size:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_BoardSizeLabel.Location = new System.Drawing.Point(12, 89);
+            this.m_BoardSizeLabel.Name = "m_BoardSizeLabel";
+            this.m_BoardSizeLabel.Size = new System.Drawing.Size(110, 24);
+            this.m_BoardSizeLabel.TabIndex = 7;
+            this.m_BoardSizeLabel.Text = "Board Size:";
+            this.m_BoardSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 196);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.startButton);
-            this.Controls.Add(this.boardSizeButton);
-            this.Controls.Add(this.gameModeButton);
-            this.Controls.Add(this.secondPlayerTextBox);
-            this.Controls.Add(this.firstPlayerTextBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.m_BoardSizeLabel);
+            this.Controls.Add(this.m_StartButton);
+            this.Controls.Add(this.m_BoardSizeButton);
+            this.Controls.Add(this.m_GameModeButton);
+            this.Controls.Add(this.m_SecondPlayerTextBox);
+            this.Controls.Add(this.m_FirstPlayerTextBox);
+            this.Controls.Add(this.m_SecondPlayerNameLabel);
+            this.Controls.Add(this.m_FirstPlayerNameLabel);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
@@ -140,13 +140,13 @@ namespace Ex05.WindowsAppUI
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox firstPlayerTextBox;
-        private System.Windows.Forms.TextBox secondPlayerTextBox;
-        private System.Windows.Forms.Button gameModeButton;
-        private System.Windows.Forms.Button boardSizeButton;
-        private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label m_FirstPlayerNameLabel;
+        private System.Windows.Forms.Label m_SecondPlayerNameLabel;
+        private System.Windows.Forms.TextBox m_FirstPlayerTextBox;
+        private System.Windows.Forms.TextBox m_SecondPlayerTextBox;
+        private System.Windows.Forms.Button m_GameModeButton;
+        private System.Windows.Forms.Button m_BoardSizeButton;
+        private System.Windows.Forms.Button m_StartButton;
+        private System.Windows.Forms.Label m_BoardSizeLabel;
     }
 }
