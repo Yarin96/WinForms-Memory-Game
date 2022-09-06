@@ -67,7 +67,7 @@ namespace Ex05.WindowsAppUI
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (!checkIfValidName(m_FirstPlayerTextBox.Text) || !checkIfValidName(m_SecondPlayerTextBox.Text))
+            if (!checkIfValidName(m_FirstPlayerTextBox.Text) || (!checkIfValidName(m_SecondPlayerTextBox.Text) && m_GameMode == eGameMode.PlayerVsPlayer))
             {
                 MessageBox.Show("Names should not contain symbols or numbers.");
             }
@@ -95,6 +95,7 @@ namespace Ex05.WindowsAppUI
         {
             if (StartedGame != null)
             {
+                Hide();
                 StartedGame.Invoke(
                     new Player(ePlayerType.Human, m_FirstPlayerTextBox.Text),
                     new Player(m_PlayerType, m_SecondPlayerTextBox.Text),

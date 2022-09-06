@@ -37,6 +37,7 @@ namespace Ex05.WindowsAppUI
             // m_CurrentPlayer
             // 
             this.m_CurrentPlayer.AutoSize = true;
+            this.m_CurrentPlayer.BackColor = System.Drawing.Color.Gold;
             this.m_CurrentPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_CurrentPlayer.Location = new System.Drawing.Point(34, 417);
             this.m_CurrentPlayer.Name = "m_CurrentPlayer";
@@ -80,7 +81,7 @@ namespace Ex05.WindowsAppUI
             this.MinimizeBox = false;
             this.Name = "GameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GameForm";
+            this.Text = "Memory Card Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 

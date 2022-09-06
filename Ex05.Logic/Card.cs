@@ -4,23 +4,19 @@ namespace Ex05.Logic
 {
     public class Card
     {
-        public event Action<Card> Clicked;
+        public event Action CardClicked;
 
-        private int m_CardId;
         private string m_CardValue;
         private bool m_IsHidden;
+        private int m_RowIndex;
+        private int m_ColIndex;
 
-        public Card(int i_CardId, string i_CardValue, bool i_IsHidden)
+        public Card(string i_CardValue, bool i_IsHidden, int i_RowIndex, int i_ColIndex)
         {
-            m_CardId = i_CardId;
             m_CardValue = i_CardValue;
             m_IsHidden = i_IsHidden;
-        }
-
-        public int CardId
-        {
-            get { return m_CardId; }
-            set { m_CardId = value; }
+            m_RowIndex = i_RowIndex;
+            m_ColIndex = i_ColIndex;
         }
 
         public string CardValue
@@ -35,14 +31,16 @@ namespace Ex05.Logic
             set { m_IsHidden = value; }
         }
 
-        internal void FlipCard()
+        public int RowIndex
         {
-            OnClickedCard();
+            get { return m_RowIndex; }
+            set { m_RowIndex = value; }
         }
 
-        protected virtual void OnClickedCard()
+        public int ColIndex
         {
-            Clicked?.Invoke(this);
+            get { return m_ColIndex; }
+            set { m_ColIndex = value; }
         }
     }
 }

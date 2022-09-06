@@ -7,18 +7,14 @@ namespace Ex05.WindowsAppUI
 {
     public partial class GameForm : Form
     {
-        public event Action<PictureBox> CardsMatch;
-
-        public event Action<PictureBox> CardWasChosen;
+        public event Action<Button> ButtonClicked;
 
         private readonly int r_BoardRows;
         private readonly int r_BoardCols;
         private readonly eGameMode r_GameMode;
         private readonly Player r_FirstPlayer;
         private readonly Player r_SecondPlayer;
-        private PictureBox[,] m_MatrixOfPictureBoxes;
-        //private int m_PairsCounterPlayerOne;
-        //private int m_PairsCounterPlayerTwo;
+        private Button[,] m_MatrixOfButtons;
 
         public GameForm(Player i_Player1, Player i_Player2, int i_BoardRows, int i_BoardCols, eGameMode i_GameMode)
         {
@@ -28,47 +24,54 @@ namespace Ex05.WindowsAppUI
             r_BoardRows = i_BoardRows;
             r_BoardCols = i_BoardCols;
             r_GameMode = i_GameMode;
-            //m_PairsCounterPlayerOne = 0;
-            //m_PairsCounterPlayerTwo = 0;
             m_CurrentPlayer.Text = string.Format("Current Player: {0}", r_FirstPlayer.PlayerName);
             m_FirstPlayerName.Text = string.Format("{0}: {1} Pair(s)", r_FirstPlayer.PlayerName, r_FirstPlayer.PlayerScore);
             m_SecondPlayerName.Text = string.Format("{0}: {1} Pair(s)", r_SecondPlayer.PlayerName, r_SecondPlayer.PlayerScore);
-            m_MatrixOfPictureBoxes = new PictureBox[r_BoardRows, r_BoardCols];
-            createCardPicturesOnBoard();
+            m_MatrixOfButtons = new Button[r_BoardRows, r_BoardCols];
+            createButtonsOnGameBoard();
         }
 
-        public PictureBox[,] MatrixOfPictureBoxes
+        internal Button[,] MatrixOfButtons
         {
-            get { return m_MatrixOfPictureBoxes; }
+            get { return m_MatrixOfButtons; }
         }
 
-        private void createCardPicturesOnBoard()
+        internal Label FirstPlayerLabel
         {
-            PictureBox currentCard;
+            get { return m_FirstPlayerName; }
+        }
+
+        internal Label SecondPlayerLabel
+        {
+            get { return m_SecondPlayerName; }
+        }
+
+        private void createButtonsOnGameBoard()
+        {
+            Button currentButton;
             int topPosition = 25;
             int leftPosition = 25;
-            int addSpacingTop = 100;
-            int addSpacingLeft = 100;
+            int addSpacingTop = 120;
+            int addSpacingLeft = 120;
 
             for (int i = 0; i < r_BoardRows; i++)
             {
                 for (int j = 0; j < r_BoardCols; j++)
                 {
-                    currentCard = new PictureBox
+                    currentButton = new Button
                     {
                         Name = i + "," + j,
-                        Width = 80,
-                        Height = 80,
-                        BackColor = Color.LightBlue,
+                        Width = 100,
+                        Height = 100,
+                        BackColor = Color.LightGray,
                         Location = new Point(leftPosition, topPosition),
-                        SizeMode = PictureBoxSizeMode.StretchImage,
                         Visible = true,
                         Margin = new Padding(15, 15, 25, 15),
                     };
 
-                    currentCard.Click += currentCard_Click;
-                    Controls.Add(currentCard);
-                    m_MatrixOfPictureBoxes[i, j] = currentCard;
+                    currentButton.Click += CurrentCard_Click;
+                    Controls.Add(currentButton);
+                    m_MatrixOfButtons[i, j] = currentButton;
                     leftPosition += addSpacingLeft;
                 }
 
@@ -82,16 +85,16 @@ namespace Ex05.WindowsAppUI
             m_SecondPlayerName.Margin = new Padding(0, 0, 0, 25);
         }
 
-        private void currentCard_Click(object sender, EventArgs e)
+        internal void CurrentCard_Click(object sender, EventArgs e)
         {
             OnClickCard(sender, e);
         }
 
         protected virtual void OnClickCard(object sender, EventArgs e)
         {
-            if (Enabled && sender is PictureBox)
+            if (Enabled && sender is Button)
             {
-                CardWasChosen?.Invoke(sender as PictureBox);
+                ButtonClicked?.Invoke(sender as Button);
             }
         }
 
