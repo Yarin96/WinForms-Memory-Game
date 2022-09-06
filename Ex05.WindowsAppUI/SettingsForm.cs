@@ -32,9 +32,8 @@ namespace Ex05.WindowsAppUI
             {
                 m_FirstPlayerTextBox.Text = m_FirstPlayerTextBox.Text == string.Empty ? "Player One" : m_FirstPlayerTextBox.Text;
                 m_SecondPlayerTextBox.Text = m_SecondPlayerTextBox.Text == string.Empty ? "Player Two" : m_SecondPlayerTextBox.Text;
+                OnStartGame();
             }
-
-            startButton_Click(sender, e);
         }
 
         private void gameModeButton_Click(object sender, EventArgs e)
