@@ -43,9 +43,9 @@ namespace Ex05.WindowsAppUI
             m_Player1 = i_Player1;
             m_Player2 = i_Player2;
             m_GameBoard = new Card[m_BoardRows, m_BoardCols];
+            m_GameForm = new GameForm(i_Player1, i_Player2, i_BoardRows, i_BoardCols, i_GameMode);
             generateRandomPicturesOnGameBoard();
             m_GameLogic = new GameLogic(i_Player1, i_Player2, i_BoardRows, i_BoardCols, m_GameBoard);
-            m_GameForm = new GameForm(i_Player1, i_Player2, i_BoardRows, i_BoardCols, i_GameMode);
             runGame();
         }
 
@@ -66,83 +66,49 @@ namespace Ex05.WindowsAppUI
             {
                 return;
             }
+            else
+            {
+                i_Button.Enabled = false;
+            }
 
-            i_Button.Enabled = false;
-
-            const bool v_AreAllButtonsDisabled = true;
             Card currentCard = getCorrespondingCardOfButton(i_Button);
             displayImageOnButton(currentCard, i_Button);
-            changeAccessToAllButtons(v_AreAllButtonsDisabled);
-            m_GameLogic.UpdateNextTurn(currentCard);
-            changeAccessToAllButtons(!v_AreAllButtonsDisabled);
+            commitTurn(currentCard);
+
+            if (m_GameLogic.IsGameOver())
+            {
+                gameOver();
+            }
 
             if (m_GameLogic.IsSecondCardSelection)
             {
                 if (m_GameLogic.CardValuesMatch)
                 {
                     updateScoreBoard();
+
+                    if (m_GameLogic.CurrentPlayer.PlayerType == ePlayerType.Computer)
+                    {
+                        attemptComputerTurn();
+                    }
                 }
                 else
                 {
-                    handlePairNotMatched(m_PrevButtonPick, i_Button);
+                    handlePairNotMatched(i_Button);
+                    attemptComputerTurn();
                 }
             }
             else
             {
                 m_PrevButtonPick = i_Button;
             }
-
-            checkIfComputerTurn();
-
-            if (m_GameLogic.IsGameOver())
-            {
-                gameOver();
-            }
-        }
-
-        private void handlePairNotMatched(Button i_FirstButtonPick, Button i_SecondButtonPick)
-        {
-            wait(1000);
-            i_FirstButtonPick.Enabled = true;
-            i_SecondButtonPick.Enabled = true;
-            i_FirstButtonPick.BackgroundImage = null;
-            i_SecondButtonPick.BackgroundImage = null;
-            i_FirstButtonPick.BackColor = Color.LightGray;
-            i_SecondButtonPick.BackColor = Color.LightGray;
-            i_FirstButtonPick.Refresh();
-            i_SecondButtonPick.Refresh();
-            m_GameForm.UpdateCurrentPlayer(m_GameLogic.CurrentPlayer.PlayerName);
         }
 
         private Card getCorrespondingCardOfButton(Button i_Button)
         {
             int rowIndex = int.Parse(i_Button.Name[0].ToString());
             int colIndex = int.Parse(i_Button.Name[2].ToString());
+
             return m_GameBoard[rowIndex, colIndex];
-        }
-
-        private void checkIfComputerTurn()
-        {
-            if (m_GameMode == eGameMode.PlayerVsComputer && m_GameLogic.IsSecondCardSelection && m_GameLogic.CurrentPlayer.PlayerType == ePlayerType.Computer)
-            {
-                computerTurn();
-            }
-        }
-
-        private void computerTurn()
-        {
-            wait(1000);
-            List<Card> twoRandomPicks = m_GameLogic.GetTwoRandomPicksByComputer();
-            invokeComputerMove(twoRandomPicks[0]);
-            invokeComputerMove(twoRandomPicks[1]);
-        }
-
-        private void invokeComputerMove(Card i_RandomPick)
-        {
-            Button buttonPick = m_GameForm.MatrixOfButtons[i_RandomPick.RowIndex, i_RandomPick.ColIndex];
-            m_GameForm.CurrentCard_Click(buttonPick, EventArgs.Empty);
-            m_GameForm.Refresh();
-            wait(500);
         }
 
         private void displayImageOnButton(Card i_CurrentCard, Button i_CurrentButton)
@@ -164,17 +130,44 @@ namespace Ex05.WindowsAppUI
             i_CurrentButton.Refresh();
         }
 
+        private void commitTurn(Card i_CurrentCard)
+        {
+            const bool v_AreAllButtonsDisabled = true;
+            changeAccessToAllButtons(v_AreAllButtonsDisabled);
+            m_GameLogic.UpdateNextTurn(i_CurrentCard);
+            changeAccessToAllButtons(!v_AreAllButtonsDisabled);
+        }
+
+        private void attemptComputerTurn()
+        {
+            if (m_GameMode == eGameMode.PlayerVsComputer && m_GameLogic.CurrentPlayer.PlayerType == ePlayerType.Computer)
+            {
+                wait(1000);
+                List<Card> twoRandomPicks = m_GameLogic.GetTwoRandomPicksByComputer();
+                computerMoveInvoker(twoRandomPicks[0]);
+                computerMoveInvoker(twoRandomPicks[1]);
+            }
+        }
+
+        private void computerMoveInvoker(Card i_RandomCardPick)
+        {
+            Button buttonPick = m_GameForm.MatrixOfButtons[i_RandomCardPick.RowIndex, i_RandomCardPick.ColIndex];
+            gameForm_ButtonClicked(buttonPick);
+            m_GameForm.Refresh();
+            wait(500);
+        }
+
         private void changeAccessToAllButtons(bool i_IsDisableAccessToAll)
         {
             foreach (Button button in m_GameForm.MatrixOfButtons)
             {
                 if (i_IsDisableAccessToAll)
                 {
-                    button.Click -= m_GameForm.CurrentCard_Click;
+                    button.Click -= m_GameForm.CurrentButton_Click;
                 }
                 else
                 {
-                    button.Click += m_GameForm.CurrentCard_Click;
+                    button.Click += m_GameForm.CurrentButton_Click;
                 }
             }
         }
@@ -191,6 +184,20 @@ namespace Ex05.WindowsAppUI
             }
         }
 
+        private void handlePairNotMatched(Button i_CurrentButtonPick)
+        {
+            wait(1000);
+            m_PrevButtonPick.Enabled = true;
+            i_CurrentButtonPick.Enabled = true;
+            m_PrevButtonPick.BackgroundImage = null;
+            i_CurrentButtonPick.BackgroundImage = null;
+            m_PrevButtonPick.BackColor = Color.LightGray;
+            i_CurrentButtonPick.BackColor = Color.LightGray;
+            m_PrevButtonPick.Refresh();
+            i_CurrentButtonPick.Refresh();
+            m_GameForm.UpdateCurrentPlayer(m_GameLogic.CurrentPlayer.PlayerName);
+        }
+
         private void generateRandomPicturesOnGameBoard()
         {
             List<string> io_PicturesUrlList = new List<string>(m_BoardRows * m_BoardCols);
@@ -199,33 +206,33 @@ namespace Ex05.WindowsAppUI
             assignPictureUrlsFromListToBoard(ref io_PicturesUrlList);
         }
 
-        private void addPicturesUrlsToList(ref List<string> io_ListOfUrls)
+        private void addPicturesUrlsToList(ref List<string> io_ListOfPictureUrls)
         {
-            for (int i = 0; i < io_ListOfUrls.Capacity / 2; i++)
+            for (int i = 0; i < io_ListOfPictureUrls.Capacity / 2; i++)
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://picsum.photos/80");
                 HttpWebResponse myResponse = (HttpWebResponse)request.GetResponse();
-                io_ListOfUrls.Add(myResponse.ResponseUri.ToString());
-                io_ListOfUrls.Add(myResponse.ResponseUri.ToString());
+                io_ListOfPictureUrls.Add(myResponse.ResponseUri.ToString());
+                io_ListOfPictureUrls.Add(myResponse.ResponseUri.ToString());
                 myResponse.Close();
             }
         }
 
-        private void shufflePictuesUrlsInList(ref List<string> io_ListOfUrls)
+        private void shufflePictuesUrlsInList(ref List<string> io_ListOfPictureUrls)
         {
             int indexInList = 0;
             Random randomValue = new Random();
 
-            for (int i = io_ListOfUrls.Count - 1; i > 1; i--)
+            for (int i = io_ListOfPictureUrls.Count - 1; i > 1; i--)
             {
                 indexInList = randomValue.Next(i + 1);
-                string randomUrl = io_ListOfUrls[indexInList];
-                io_ListOfUrls[indexInList] = io_ListOfUrls[i];
-                io_ListOfUrls[i] = randomUrl;
+                string randomUrl = io_ListOfPictureUrls[indexInList];
+                io_ListOfPictureUrls[indexInList] = io_ListOfPictureUrls[i];
+                io_ListOfPictureUrls[i] = randomUrl;
             }
         }
 
-        private void assignPictureUrlsFromListToBoard(ref List<string> io_ListOfUrls)
+        private void assignPictureUrlsFromListToBoard(ref List<string> io_ListOfPictureUrls)
         {
             int indexInList = 0;
             const bool v_DefineCardAsHidden = true;
@@ -234,7 +241,7 @@ namespace Ex05.WindowsAppUI
             {
                 for (int j = 0; j < m_BoardCols; j++)
                 {
-                    m_GameBoard[i, j] = new Card(io_ListOfUrls[indexInList], v_DefineCardAsHidden, i, j);
+                    m_GameBoard[i, j] = new Card(io_ListOfPictureUrls[indexInList], v_DefineCardAsHidden, i, j);
                     indexInList++;
                 }
             }

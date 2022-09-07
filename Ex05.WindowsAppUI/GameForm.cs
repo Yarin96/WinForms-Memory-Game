@@ -69,7 +69,7 @@ namespace Ex05.WindowsAppUI
                         Margin = new Padding(15, 15, 25, 15),
                     };
 
-                    currentButton.Click += CurrentCard_Click;
+                    currentButton.Click += CurrentButton_Click;
                     Controls.Add(currentButton);
                     m_MatrixOfButtons[i, j] = currentButton;
                     leftPosition += addSpacingLeft;
@@ -85,12 +85,12 @@ namespace Ex05.WindowsAppUI
             m_SecondPlayerName.Margin = new Padding(0, 0, 0, 25);
         }
 
-        internal void CurrentCard_Click(object sender, EventArgs e)
+        internal void CurrentButton_Click(object sender, EventArgs e)
         {
-            OnClickCard(sender, e);
+            OnClickButton(sender, e);
         }
 
-        protected virtual void OnClickCard(object sender, EventArgs e)
+        protected virtual void OnClickButton(object sender, EventArgs e)
         {
             if (Enabled && sender is Button)
             {

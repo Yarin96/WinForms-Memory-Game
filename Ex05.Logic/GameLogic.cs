@@ -15,7 +15,7 @@ namespace Ex05.Logic
         private Player m_Player1;
         private Player m_Player2;
         private Player m_CurrentPlayer;
-        private int m_CurrentScore;
+        private int m_TotalCurrentScore;
         private int m_TotalPossibleScore;
 
         public GameLogic(Player i_Player1, Player i_Player2, int i_BoardRows, int i_BoardCols, Card[,] i_Board)
@@ -28,7 +28,7 @@ namespace Ex05.Logic
             m_IsSecondCardSelection = true;
             m_CardValuesMatch = false;
             m_GameBoard = i_Board;
-            m_CurrentScore = 0;
+            m_TotalCurrentScore = 0;
             m_TotalPossibleScore = (r_BoardRows * r_BoardCols) / 2;
         }
 
@@ -86,7 +86,7 @@ namespace Ex05.Logic
                 if (m_CardValuesMatch)
                 {
                     m_CurrentPlayer.PlayerScore++;
-                    m_CurrentScore++;
+                    m_TotalCurrentScore++;
                 }
                 else
                 {
@@ -112,6 +112,7 @@ namespace Ex05.Logic
                     currentComputerChoice = m_GameBoard[random.Next(r_BoardRows), random.Next(r_BoardCols)];
                 }
 
+                currentComputerChoice.IsHidden = false;
                 twoRandomPicks.Add(currentComputerChoice);
             }
 
@@ -141,7 +142,7 @@ namespace Ex05.Logic
 
         public bool IsGameOver()
         {
-            return m_CurrentScore == m_TotalPossibleScore;
+            return m_TotalCurrentScore == m_TotalPossibleScore;
         }
     }
 }

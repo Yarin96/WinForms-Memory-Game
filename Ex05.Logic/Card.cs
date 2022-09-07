@@ -34,13 +34,21 @@ namespace Ex05.Logic
         public int RowIndex
         {
             get { return m_RowIndex; }
-            set { m_RowIndex = value; }
         }
 
         public int ColIndex
         {
             get { return m_ColIndex; }
-            set { m_ColIndex = value; }
+        }
+
+        public void CurrentCard_Click(object sender, EventArgs e)
+        {
+            OnClickCard(sender, e);
+        }
+
+        protected virtual void OnClickCard(object sender, EventArgs e)
+        {
+            CardClicked?.Invoke();
         }
     }
 }
