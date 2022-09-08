@@ -41,7 +41,7 @@ namespace Ex05.Logic
             get { return m_ColIndex; }
         }
 
-        public void CurrentCard_Click(object sender, EventArgs e)
+        internal void CurrentCard_Click(object sender, EventArgs e)
         {
             OnClickCard(sender, e);
         }

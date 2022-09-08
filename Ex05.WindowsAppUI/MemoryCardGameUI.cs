@@ -66,18 +66,16 @@ namespace Ex05.WindowsAppUI
             {
                 return;
             }
-            else
-            {
-                i_Button.Enabled = false;
-            }
 
+            i_Button.Enabled = false;
             Card currentCard = getCorrespondingCardOfButton(i_Button);
             displayImageOnButton(currentCard, i_Button);
             commitTurn(currentCard);
 
             if (m_GameLogic.IsGameOver())
             {
-                gameOver();
+                updateScoreBoard();
+                gameOverMessage();
             }
 
             if (m_GameLogic.IsSecondCardSelection)
@@ -202,7 +200,7 @@ namespace Ex05.WindowsAppUI
         {
             List<string> io_PicturesUrlList = new List<string>(m_BoardRows * m_BoardCols);
             addPicturesUrlsToList(ref io_PicturesUrlList);
-            shufflePictuesUrlsInList(ref io_PicturesUrlList);
+            shufflePicturesUrlsInList(ref io_PicturesUrlList);
             assignPictureUrlsFromListToBoard(ref io_PicturesUrlList);
         }
 
@@ -210,7 +208,7 @@ namespace Ex05.WindowsAppUI
         {
             for (int i = 0; i < io_ListOfPictureUrls.Capacity / 2; i++)
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://picsum.photos/80");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://loremflickr.com/80/80/dog");
                 HttpWebResponse myResponse = (HttpWebResponse)request.GetResponse();
                 io_ListOfPictureUrls.Add(myResponse.ResponseUri.ToString());
                 io_ListOfPictureUrls.Add(myResponse.ResponseUri.ToString());
@@ -218,7 +216,7 @@ namespace Ex05.WindowsAppUI
             }
         }
 
-        private void shufflePictuesUrlsInList(ref List<string> io_ListOfPictureUrls)
+        private void shufflePicturesUrlsInList(ref List<string> io_ListOfPictureUrls)
         {
             int indexInList = 0;
             Random randomValue = new Random();
@@ -247,7 +245,7 @@ namespace Ex05.WindowsAppUI
             }
         }
 
-        private void gameOver()
+        private void gameOverMessage()
         {
             StringBuilder endingMessage = new StringBuilder();
 
