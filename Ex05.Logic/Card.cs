@@ -4,8 +4,6 @@ namespace Ex05.Logic
 {
     public class Card
     {
-        public event Action CardClicked;
-
         private string m_CardValue;
         private bool m_IsHidden;
         private int m_RowIndex;
@@ -39,16 +37,6 @@ namespace Ex05.Logic
         public int ColIndex
         {
             get { return m_ColIndex; }
-        }
-
-        internal void CurrentCard_Click(object sender, EventArgs e)
-        {
-            OnClickCard(sender, e);
-        }
-
-        protected virtual void OnClickCard(object sender, EventArgs e)
-        {
-            CardClicked?.Invoke();
         }
     }
 }
