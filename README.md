@@ -6,6 +6,5 @@ The game starts with a settings window and has two modes: Vs Player or Vs Comput
 
 ## Example of the game:
 
-
-https://user-images.githubusercontent.com/94289687/190447084-a073ead8-1eb2-4f96-be1f-8bbf39e8a8b3.mp4
+https://user-images.githubusercontent.com/94289687/190449913-6e5860eb-059b-4398-b834-95eca420f566.mp4
 
