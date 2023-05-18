@@ -1,10 +1,10 @@
 # WinForms-Memory-Game 🎴
 
-The classic Memory Card game developed in .NET Framework using C#.  
-In this project me and my partner Ben Daniels worked with delegates in order for the user to interact with the WinForms library.  
-The game starts with a settings window and has two modes: Vs Player or Vs Computer.  
+* A classic memory card game developed on the .NET Framework using C#.
+* For this project, my partner Ben Daniels and I developed clean and object oriented code, which uses delegates and allows users to interact with the WinForms library user interface.
+* The game starts in the settings window and has his two modes, versus player or versus computer.
 
-## Videos:
+## Presentational Video:
 
 https://user-images.githubusercontent.com/94289687/190449913-6e5860eb-059b-4398-b834-95eca420f566.mp4
 
